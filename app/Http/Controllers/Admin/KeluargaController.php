@@ -18,8 +18,8 @@ class KeluargaController extends Controller
     public function index()
     {
         // Ambil semua data KK dan tampilkan di tabel admin
-        $dataKeluarga = Keluarga::withCount('anggota')->latest()->paginate(15);
-        return view('admin.keluarga.index', compact('dataKeluarga'));
+        $PendataanKK = Keluarga::withCount('anggota')->latest()->paginate(15);
+        return view('admin.keluarga.index', compact('PendataanKK'));
     }
 
     /**

@@ -5,8 +5,11 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
+                        <svg class="h-8 w-auto text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.962a3.75 3.75 0 0 1-4.29-4.29 3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1 4.29 4.29 3.75 3.75 0 0 1-4.29 4.29m0 0a3.75 3.75 0 0 1-4.29 4.29 3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1 4.29 4.29m0 0a3.75 3.75 0 0 1 4.29 4.29 3.75 3.75 0 0 1-4.29-4.29m-10.5-4.29a3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1-4.29 4.29m0 0a3.75 3.75 0 0 1-4.29-4.29 3.75 3.75 0 0 1 4.29 4.29" />
+                        </svg>
+                        <span class="font-bold text-xl text-gray-800">PendataanKK</span>
                     </a>
                 </div>
 

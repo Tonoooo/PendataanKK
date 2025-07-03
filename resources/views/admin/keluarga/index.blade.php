@@ -1,20 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Manajemen Kartu Keluarga') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
                     
                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No. KK</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kepala Keluarga</th>
@@ -25,8 +25,8 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                @forelse ($dataKeluarga as $kk)
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @forelse ($PendataanKK as $kk)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $kk->nomor_kk }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $kk->nama_kepala_keluarga }}</td>
@@ -51,7 +51,7 @@
                         </table>
                     </div>
                     <div class="mt-4">
-                        {{ $dataKeluarga->links() }}
+                        {{ $PendataanKK->links() }}
                     </div>
                 </div>
             </div>

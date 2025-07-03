@@ -5,12 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicKkController;
 use App\Http\Controllers\Admin\KeluargaController as AdminKeluargaController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Models\Keluarga; // Import model Keluarga
+use App\Models\User;     // Import model User
 
 // Halaman Welcome
 Route::get('/', [PublicKkController::class, 'welcome'])->name('welcome');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $jumlahKeluarga = Keluarga::count();
+    $jumlahAdmin = User::count();
+
+    return view('dashboard', [
+        'jumlahKeluarga' => $jumlahKeluarga,
+        'jumlahAdmin' => $jumlahAdmin,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

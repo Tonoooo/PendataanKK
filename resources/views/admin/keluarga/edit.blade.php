@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Data Keluarga: ' . $keluarga->nomor_kk) }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
                     
                     <x-input-error :messages="$errors->all()" class="mb-4" />
                     
@@ -17,7 +17,7 @@
                         @method('PUT')
 
                         <!-- DATA WILAYAH & KEPALA KELUARGA -->
-                        <fieldset class="border-2 border-gray-300 dark:border-gray-600 p-4 rounded-lg">
+                        <fieldset class="border-2 border-gray-300 p-4 rounded-lg">
                             <legend class="px-2 font-semibold text-lg">Data Wilayah</legend>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <x-text-input type="text" name="nama_kepala_keluarga" placeholder="Nama Kepala Keluarga" class="w-full" required :value="old('nama_kepala_keluarga', $keluarga->nama_kepala_keluarga)" />
@@ -34,15 +34,15 @@
                         </fieldset>
 
                         <!-- DATA ANGGOTA KELUARGA (DINAMIS) -->
-                        <fieldset class="mt-6 border-2 border-gray-300 dark:border-gray-600 p-4 rounded-lg"
+                        <fieldset class="mt-6 border-2 border-gray-300 p-4 rounded-lg"
                             x-data="{ 
                                 anggota: {{ json_encode(old('anggota', $keluarga->anggota->toArray())) }} 
                             }">
                             <legend class="px-2 font-semibold text-lg">Data Anggota Keluarga</legend>
 
                             <template x-for="(orang, index) in anggota" :key="index">
-                                <div class="border p-4 mb-4 rounded-md relative bg-gray-50 dark:bg-gray-700">
-                                    <h3 class="font-bold mb-3 dark:text-gray-200">Anggota ke-<span x-text="index + 1"></span></h3>
+                                <div class="border p-4 mb-4 rounded-md relative bg-gray-50">
+                                    <h3 class="font-bold mb-3">Anggota ke-<span x-text="index + 1"></span></h3>
                                     <!-- Hidden input untuk ID anggota yang sudah ada -->
                                     <input type="hidden" x-bind:name="`anggota[${index}][id]`" x-model="orang.id">
                                     
@@ -54,13 +54,13 @@
                                             <option value="PEREMPUAN">PEREMPUAN</option>
                                         </x-select>
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][tempat_lahir]`" x-model="orang.tempat_lahir" placeholder="Tempat Lahir" required />
-                                        <div><label class="text-sm text-gray-500 dark:text-gray-400">Tanggal Lahir</label><x-text-input type="date" x-bind:name="`anggota[${index}][tanggal_lahir]`" x-model="orang.tanggal_lahir" required /></div>
+                                        <div><label class="text-sm text-gray-500">Tanggal Lahir</label><x-text-input type="date" x-bind:name="`anggota[${index}][tanggal_lahir]`" x-model="orang.tanggal_lahir" required /></div>
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][agama]`" x-model="orang.agama" placeholder="Agama" required />
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][pendidikan]`" x-model="orang.pendidikan" placeholder="Pendidikan Terakhir" required />
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][jenis_pekerjaan]`" x-model="orang.jenis_pekerjaan" placeholder="Jenis Pekerjaan" required />
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][golongan_darah]`" x-model="orang.golongan_darah" placeholder="Gol. Darah" />
                                         <x-select x-bind:name="`anggota[${index}][status_perkawinan]`" x-model="orang.status_perkawinan" required><option>BELUM KAWIN</option><option>KAWIN</option><option>CERAI HIDUP</option><option>CERAI MATI</option></x-select>
-                                        <div><label class="text-sm text-gray-500 dark:text-gray-400">Tgl Perkawinan</label><x-text-input type="date" x-bind:name="`anggota[${index}][tanggal_perkawinan]`" x-model="orang.tanggal_perkawinan" /></div>
+                                        <div><label class="text-sm text-gray-500">Tgl Perkawinan</label><x-text-input type="date" x-bind:name="`anggota[${index}][tanggal_perkawinan]`" x-model="orang.tanggal_perkawinan" /></div>
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][status_hubungan_dalam_keluarga]`" x-model="orang.status_hubungan_dalam_keluarga" placeholder="Status Hub. Keluarga" required />
                                         <x-select x-bind:name="`anggota[${index}][kewarganegaraan]`" x-model="orang.kewarganegaraan" required><option>WNI</option><option>WNA</option></x-select>
                                         <x-text-input type="text" x-bind:name="`anggota[${index}][nama_ayah]`" x-model="orang.nama_ayah" placeholder="Nama Ayah" required />
