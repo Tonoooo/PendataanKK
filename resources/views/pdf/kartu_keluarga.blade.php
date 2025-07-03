@@ -141,7 +141,7 @@
         </tbody>
     </table>
 
-    <table class="footer">
+    {{-- <table class="footer">
         <tr>
             <td></td>
             <td></td>
@@ -153,7 +153,7 @@
                 NIP. (NIP KEPALA DINAS)
             </td>
         </tr>
-    </table>
+    </table> --}}
 </div>
 </body>
 </html>
