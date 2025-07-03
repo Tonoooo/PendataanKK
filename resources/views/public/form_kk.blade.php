@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formulir Pembuatan KK</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon_io/favicon.ico') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
