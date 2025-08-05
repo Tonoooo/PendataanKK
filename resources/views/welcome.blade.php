@@ -29,7 +29,7 @@
                             <svg class="h-8 w-auto text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.962a3.75 3.75 0 0 1-4.29-4.29 3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1 4.29 4.29 3.75 3.75 0 0 1-4.29 4.29m0 0a3.75 3.75 0 0 1-4.29 4.29 3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1 4.29 4.29m0 0a3.75 3.75 0 0 1 4.29 4.29 3.75 3.75 0 0 1-4.29-4.29m-10.5-4.29a3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1-4.29 4.29m0 0a3.75 3.75 0 0 1-4.29-4.29 3.75 3.75 0 0 1 4.29 4.29" />
                             </svg>
-                            <span class="font-bold text-xl text-gray-800">PendataanKK</span>
+                            <span class="font-bold text-xl text-gray-800">Data Ikhwan Jabar</span>
                         </a>
                     </div>
                     
@@ -54,17 +54,17 @@
                         
                         <div class="max-w-3xl mx-auto text-center">
                             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900">
-                                Mari Membuat KK Anda, <span class="text-indigo-600">Dengan Mudah dan Cepat.</span>
+                                Pangkalan Data <br> Ikhwan <span class="text-indigo-600"> Jawa Barat</span>
                             </h1>
                             <p class="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-                                Platform terpusat untuk mendata, mengelola, dan menghasilkan dokumen KK untuk anggota komunitas secara efisien dan aman.
+                                Platform terpusat untuk mendata, mengelola, dan menghasilkan dokumen untuk ikhwan secara efisien dan aman.
                             </p>
                             
                             {{-- Tombol Call-to-Action Utama --}}
                             <div class="mt-10">
                                 <a href="{{ route('kk.create') }}" 
                                    class="inline-block w-full sm:w-auto px-10 py-4 border border-transparent text-lg font-semibold rounded-full text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg transform transition-transform hover:scale-105">
-                                    Buat KK Baru
+                                    Buat Data Baru
                                 </a>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
         <footer class="bg-white border-t border-gray-200">
             <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <p class="text-center text-sm text-gray-500">
-                    © {{ date('Y') }} PendataanKK. All rights reserved.
+                    © {{ date('Y') }} Data Ikhwan Jabar. All rights reserved.
                 </p>
             </div>
         </footer>

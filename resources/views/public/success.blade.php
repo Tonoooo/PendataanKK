@@ -21,7 +21,7 @@
                     <svg class="h-8 w-auto text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                          <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.962a3.75 3.75 0 0 1-4.29-4.29 3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1 4.29 4.29 3.75 3.75 0 0 1-4.29 4.29m0 0a3.75 3.75 0 0 1-4.29 4.29 3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1 4.29 4.29m0 0a3.75 3.75 0 0 1 4.29 4.29 3.75 3.75 0 0 1-4.29-4.29m-10.5-4.29a3.75 3.75 0 0 1 4.29-4.29 3.75 3.75 0 0 1-4.29 4.29m0 0a3.75 3.75 0 0 1-4.29-4.29 3.75 3.75 0 0 1 4.29 4.29" />
                     </svg>
-                    <span class="font-bold text-xl text-gray-800">PendataanKK</span>
+                    <span class="font-bold text-xl text-gray-800">Data Ikhwan Jabar</span>
                 </a>
                 <p class="px-5 py-2 border border-transparent text-base font-medium rounded-3xl text-green-600 bg-green-200 transition-colors">
                     Berhasil
@@ -80,7 +80,7 @@
     <footer class="bg-white border-t border-gray-200 mt-auto">
         <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <p class="text-center text-sm text-gray-500">
-                © {{ date('Y') }} PendataanKK. All rights reserved.
+                © {{ date('Y') }} Data Ikhwan Jabar. All rights reserved.
             </p>
         </div>
     </footer>

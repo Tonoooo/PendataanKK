@@ -23,13 +23,13 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1><strong>KARTU KELUARGA</strong></h1>
+        <h1><strong>DATA IKHWAN JABAR</strong></h1>
         <h2>No. {{ $keluarga->nomor_kk }}</h2>
     </div>
 
     <table class="info-table">
         <tr>
-            <td style="width: 15%;">Nama Kepala Keluarga</td>
+            <td style="width: 15%;">Nama Kepala</td>
             <td style="width: 2%;">:</td>
             <td style="width: 48%;">{{ strtoupper($keluarga->nama_kepala_keluarga) }}</td>
             <td style="width: 15%;">Kecamatan</td>

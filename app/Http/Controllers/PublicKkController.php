@@ -24,7 +24,31 @@ class PublicKkController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        // cek apakah request hanya punya 1 bari data (kepala keluarga) saja atau memiliki anggota keluarga
+        // jika hanya kepala keluarga maka kita akan simpan data keluarga saja
+        if ($request->has('anggota') && count($request->input('anggota')) == 0) {
+            // simpan data keluarga saja
+            $validated = $request->validate([
+                // Validasi Data Keluarga
+                'nama_kepala_keluarga' => 'required|string|max:255',
+                'nomor_kk' => 'required|digits:16|unique:keluargas,nomor_kk',
+                'alamat' => 'required|string|max:255',
+
+            ]);
+
+            // Tambahkan tanggal_dikeluarkan sebelum menyimpan
+            $validated['tanggal_dikeluarkan'] = now()->toDateString();
+
+            // simpan data keluarga
+            $keluarga = Keluarga::create($validated);
+            
+
+            return redirect()->route('kk.success', ['keluarga' => $keluarga->id])
+                             ->with('status', 'Data keluarga berhasil dibuat!');
+
+        } else {
+            // simpan data keluarga dan anggota keluarga
+            $validated = $request->validate([
             // Validasi Data Keluarga
             'nama_kepala_keluarga' => 'required|string|max:255',
             'nomor_kk' => 'required|digits:16|unique:keluargas,nomor_kk',
@@ -38,61 +62,42 @@ class PublicKkController extends Controller
             'provinsi' => 'required|string|max:100',
 
             // Validasi Data Anggota (Array)
-            'anggota' => 'required|array|min:1',
-            'anggota.*.nama_lengkap' => 'required|string|max:255',
-            'anggota.*.nik' => 'required|digits:16|distinct|unique:anggota_keluargas,nik',
-            'anggota.*.jenis_kelamin' => ['required', Rule::in(['LAKI-LAKI', 'PEREMPUAN'])],
-            'anggota.*.tempat_lahir' => 'required|string|max:100',
-            'anggota.*.tanggal_lahir' => 'required|date',
-            'anggota.*.agama' => 'required|string|max:50',
-            'anggota.*.pendidikan' => 'required|string|max:100',
-            'anggota.*.jenis_pekerjaan' => 'required|string|max:100',
+            'anggota' => 'nullable|array',
+            'anggota.*.nama_lengkap' => 'nullable|string|max:255',
+            'anggota.*.nik' => 'nullable|digits:16|distinct|unique:anggota_keluargas,nik',
+            'anggota.*.jenis_kelamin' => ['nullable', Rule::in(['LAKI-LAKI', 'PEREMPUAN'])],
+            'anggota.*.tempat_lahir' => 'nullable|string|max:100',
+            'anggota.*.tanggal_lahir' => 'nullable|date',
+            'anggota.*.agama' => 'nullable|string|max:50',
+            'anggota.*.pendidikan' => 'nullable|string|max:100',
+            'anggota.*.jenis_pekerjaan' => 'nullable|string|max:100',
             'anggota.*.golongan_darah' => 'nullable|string|max:3',
-            'anggota.*.status_perkawinan' => 'required|string',
+            'anggota.*.status_perkawinan' => 'nullable|string',
             'anggota.*.tanggal_perkawinan' => 'nullable|date',
-            'anggota.*.status_hubungan_dalam_keluarga' => 'required|string|max:100',
-            'anggota.*.kewarganegaraan' => 'required|string',
-            'anggota.*.nama_ayah' => 'required|string|max:255',
-            'anggota.*.nama_ibu' => 'required|string|max:255',
+            'anggota.*.status_hubungan_dalam_keluarga' => 'nullable|string|max:100',
+            'anggota.*.kewarganegaraan' => 'nullable|string',
+            'anggota.*.nama_ayah' => 'nullable|string|max:255',
+            'anggota.*.nama_ibu' => 'nullable|string|max:255',
             'anggota.*.penghasilan_per_bulan' => 'nullable|numeric|min:0',
             'anggota.*.skill_keahlian' => 'nullable|string',
             'anggota.*.email' => 'nullable|email|distinct|unique:anggota_keluargas,email',
-        ]);
-
-        try {
-            DB::beginTransaction();
-
-            $keluarga = Keluarga::create([
-                'nomor_kk' => $validated['nomor_kk'],
-                'nama_kepala_keluarga' => $validated['nama_kepala_keluarga'],
-                'alamat' => $validated['alamat'],
-                'rt' => $validated['rt'],
-                'rw' => $validated['rw'],
-                'kode_pos' => $validated['kode_pos'],
-                'desa_kelurahan' => $validated['desa_kelurahan'],
-                'kecamatan' => $validated['kecamatan'],
-                'kabupaten_kota' => $validated['kabupaten_kota'],
-                'provinsi' => $validated['provinsi'],
-                'tanggal_dikeluarkan' => now(),
             ]);
 
-            foreach ($validated['anggota'] as $dataAnggota) {
-                // Tambahkan 'keluarga_id' sebelum create
-                $dataAnggota['keluarga_id'] = $keluarga->id;
-                AnggotaKeluarga::create($dataAnggota);
-            }
+            // Tambahkan tanggal_dikeluarkan sebelum menyimpan
+            $validated['tanggal_dikeluarkan'] = now()->toDateString();
 
-            DB::commit();
+            // simpan data keluarga
+            $keluarga = Keluarga::create($validated);
+
+            // simpan data anggota keluarga
+            foreach ($validated['anggota'] as $anggota) {
+                $anggota['keluarga_id'] = $keluarga->id;
+                AnggotaKeluarga::create($anggota);  
+            }
 
             return redirect()->route('kk.success', ['keluarga' => $keluarga->id])
                              ->with('status', 'Data keluarga berhasil dibuat!');
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            // Redirect kembali dengan error dan input lama
-            return back()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage()])->withInput();
         }
-
     }
 
     public function success(Keluarga $keluarga)

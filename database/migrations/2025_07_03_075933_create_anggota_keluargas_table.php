@@ -15,22 +15,22 @@ return new class extends Migration
             $table->id();
             $table->foreignId('keluarga_id')->constrained('keluargas')->onDelete('cascade');
 
-            // --- Kolom Data Sesuai KK Asli ---
-            $table->string('nama_lengkap');
-            $table->string('nik', 16)->unique();
-            $table->enum('jenis_kelamin', ['LAKI-LAKI', 'PEREMPUAN']);
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->string('agama');
-            $table->string('pendidikan');
-            $table->string('jenis_pekerjaan');
+            // --- Kolom Data Sesuai KK Asli --- semua nullable
+            $table->string('nama_lengkap')->nullable();
+            $table->string('nik', 16)->unique()->nullable();
+            $table->enum('jenis_kelamin', ['LAKI-LAKI', 'PEREMPUAN'])->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('pendidikan')->nullable();
+            $table->string('jenis_pekerjaan')->nullable();
             $table->string('golongan_darah', 3)->nullable();
-            $table->string('status_perkawinan');
+            $table->string('status_perkawinan')->nullable();
             $table->date('tanggal_perkawinan')->nullable();
-            $table->string('status_hubungan_dalam_keluarga');
-            $table->string('kewarganegaraan');
-            $table->string('nama_ayah');
-            $table->string('nama_ibu');
+            $table->string('status_hubungan_dalam_keluarga')->nullable();
+            $table->string('kewarganegaraan')->nullable();
+            $table->string('nama_ayah')->nullable();
+            $table->string('nama_ibu')->nullable();
 
             // --- Kolom Data Tambahan (Custom) ---
             $table->unsignedBigInteger('penghasilan_per_bulan')->nullable();
